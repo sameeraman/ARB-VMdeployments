@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "value": "ArcTest-BIC1"
+        },
+        "location": {
+            "value": "eastus"
+        },
+        "customLocationId": {
+            "value": "/subscriptions/*****/resourceGroups/Treeby-HCI-146/providers/Microsoft.ExtendedLocation/customLocations/treeby-hci"
+        },
+        "hardwareProfile": {
+            "value": {
+                "processors": 2,
+                "memoryGB": 4
+            }
+        },
+        "subscriptionId": {
+            "value": "****"
+        },
+        "resourceGroupName": {
+            "value": "ArcTest-BICEP"
+        },
+        "osType": {
+            "value": "Windows"
+        },
+        "adminUsername": {
+            "value": "azureadmin"
+        },
+        "adminPassword": {
+            "value": "*****"
+        }
+    }
+}

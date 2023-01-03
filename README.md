@@ -15,3 +15,13 @@ az group create --name $rgName --location eastus
 az deployment group create --resource-group $rgName --template-file ./hci-vm.bicep --parameters @./hci-vm.parameters.json
 ```
 
+## ARM Template 
+The ARM Template file is located here - [/ArmTemplate/hci-vm.json](ArmTemplate/hci-vm.bicep). It deploys a VM using the Azure Resource Bridge. The parameters file is located [here](ArmTemplate/hci-vm.parameters.json)
+
+```
+rgName="ArcTest-ARM"
+# Create resource group
+az group create --name $rgName --location eastus
+# Deploy ARM template
+az deployment group create --resource-group $rgName --template-file ./hci-vm.json --parameters @./hci-vm.parameters.json
+```

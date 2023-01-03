@@ -1,0 +1,95 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string"
+        },
+        "customLocationId": {
+            "type": "string"
+        },
+        "hardwareProfile": {
+            "type": "object"
+        },
+        "subscriptionId": {
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "type": "string"
+        },
+        "osType": {
+            "type": "string"
+        },
+        "adminUsername": {
+            "type": "string"
+        },
+        "adminPassword": {
+            "type": "securestring"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "apiVersion": "2021-09-01-preview",
+            "name": "[parameters('name')]",
+            "location": "[parameters('location')]",
+            "type": "Microsoft.AzureStackHCI/virtualmachines",
+            "properties": {
+                "resourceName": "[parameters('name')]",
+                "hardwareProfile": "[parameters('hardwareProfile')]",
+                "osProfile": {
+                    "adminUsername": "[parameters('adminUsername')]",
+                    "adminPassword": "[parameters('adminPassword')]",
+                    "osType": "[parameters('osType')]",
+                    "computerName": "[parameters('name')]"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "name": "/subscriptions/*****/resourceGroups/Treeby-HCI-146/providers/Microsoft.AzureStackHCI/galleryImages/sp-win2k22-server"
+                    }
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceid('Microsoft.AzureStackHCI/networkinterfaces','nic1')]"
+                        }
+                    ]
+                }
+            },
+            "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "[parameters('customLocationId')]"
+            },
+            "dependsOn": [
+                "Microsoft.AzureStackHCI/networkinterfaces/nic1"
+            ]
+        },
+        {
+            "apiVersion": "2021-09-01-preview",
+            "name": "nic1",
+            "type": "Microsoft.AzureStackHCI/networkinterfaces",
+            "location": "[parameters('location')]",
+            "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "[parameters('customLocationId')]"
+            },
+            "properties": {
+                "resourceName": "nic1",
+                "ipConfigurations": [
+                    {
+                        "name": "nic1",
+                        "properties": {
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "/subscriptions/****/resourcegroups/treeby-hci-146/providers/microsoft.azurestackhci/virtualnetworks/treeby-vnet-23"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
