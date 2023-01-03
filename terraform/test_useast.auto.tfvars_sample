@@ -1,0 +1,29 @@
+company_prefix     = "cts"
+location_prefix    = "use1"
+environment_prefix = "prd"
+location           = "eastus"
+workload_postfix   = "hci-vm3"
+
+tags = {
+  CostCentre     = "1001"
+  Owner          = "john.smith@contoso.com"
+  DeploymentType = "Automated"
+  Application    = "ARB HCI VM Testing"
+}
+
+subscription_id = ""
+client_id       = ""
+client_secret   = ""
+tenant_id       = ""
+
+customLocationId = "/subscriptions/****/resourceGroups/Treeby-HCI-146/providers/Microsoft.ExtendedLocation/customLocations/treeby-hci"
+
+localVnetID = "/subscriptions/****/resourcegroups/treeby-hci-146/providers/microsoft.azurestackhci/virtualnetworks/treeby-vnet-23"
+
+vm_name = "ArcTest-VM3"
+vm_os_type = "Windows"
+vm_username = "azureadmin"
+vm_password = "****"
+vm_os_image_reference = "/subscriptions/****/resourceGroups/Treeby-HCI-146/providers/Microsoft.AzureStackHCI/galleryImages/sp-win2k22-server"
+vm_cpu_cores = 2
+vm_ram = 2
